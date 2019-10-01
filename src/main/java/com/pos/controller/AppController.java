@@ -23,6 +23,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
 import com.pos.model.Establishment;
 import com.pos.model.Floor;
+import com.google.gson.Gson;
+import com.pos.model.Establishment;
+import com.pos.model.Floor;
 import com.pos.model.L1menu;
 import com.pos.model.L2menu;
 import com.pos.model.L3menu;
@@ -53,6 +56,9 @@ public class AppController {
 		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();		
 		model.addAttribute("menumasterList", menumasterList2);
 		
+		List<MenuMaster> menumasterList = posservice.findMenuMasters();
+		model.addAttribute("menumasterList", menumasterList);
+		System.out.println(menumasterList);
 		List<Establishment> establishmentList = posservice.findEstablishments();
 		model.addAttribute("establishmentList", establishmentList);
 		return "establishment";
@@ -236,6 +242,7 @@ public class AppController {
 	public String tablesPage(ModelMap model) {
 		Tables tables = new Tables();
 		model.addAttribute("tables", tables);
+
 		
 		List<Floor> floorList = posservice.findFloors();
 		model.addAttribute("floorList", floorList);

@@ -29,7 +29,7 @@ public class Establishment implements Serializable{
 	@Size(min=3, max=50)
 	@Column(name = "est_name", nullable = false)
 	private String name;
-	
+		
 	@OneToMany(cascade = CascadeType.ALL)
     private List<Floor> listFloor = new ArrayList<>(0);
 
@@ -66,7 +66,7 @@ public class Establishment implements Serializable{
 		this.name = name;
 		this.listFloor = listFloor;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Establishment [id=" + id + ", name=" + name + ", listFloor=" + listFloor + "]";
@@ -77,6 +77,4 @@ public class Establishment implements Serializable{
 		this.id = id;
 		this.name = name;
 	}
-		
-	
 }

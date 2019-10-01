@@ -1,12 +1,10 @@
 package com.pos.service;
 
 import java.util.List;
-
 import org.jboss.logging.annotations.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.pos.dao.MenuMasterDAO;
 import com.pos.dao.TablesDAO;
 import com.pos.dao.TaxDAO;
@@ -147,7 +145,6 @@ public class POSServiceImpl implements POSService{
 	public void addTables(Tables tables) {
 		tablesdao.addTables(tables);
 	}
-
 
 
 }

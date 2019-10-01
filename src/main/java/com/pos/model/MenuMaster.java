@@ -80,6 +80,4 @@ public class MenuMaster {
 		return "MenuMaster [id=" + id + ", name=" + name + ", listL1Menu=" + listL1Menu + "]";
 	}
 
-	
-
 }

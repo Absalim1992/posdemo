@@ -36,7 +36,6 @@ public class Floor {
 	public Floor() {
 		
 	}
-	
 	public List<Tables> getListTables() {
 		return listTables;
 	}
@@ -67,7 +66,7 @@ public class Floor {
 		this.name = name;
 		this.listTables = listTables;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Floor [id=" + id + ", name=" + name + ", listTables=" + listTables + "]";

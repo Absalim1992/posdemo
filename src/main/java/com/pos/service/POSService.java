@@ -10,8 +10,6 @@ import com.pos.model.Floor;
 import com.pos.model.L1menu;
 import com.pos.model.L2menu;
 import com.pos.model.L3menu;
-import com.pos.model.MenuMaster;
-import com.pos.model.Taxes;
 import com.pos.model.Users;
 
 public interface POSService {
