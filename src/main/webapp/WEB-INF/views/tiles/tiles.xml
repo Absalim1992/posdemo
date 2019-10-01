@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">  
+
+<tiles-definitions>  
+ 
+   <!-- Base Definition -->
+   <definition name="base-definition" 
+       template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">  
+       <put-attribute name="title" value="" />  
+       <put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />  
+       <put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />  
+       <put-attribute name="body" value="" />  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />  
+   </definition>  
+ 
+   <!-- Index Page -->
+   <definition name="index" extends="base-definition">  
+       <put-attribute name="title" value="Index" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/index.jsp" />  
+   </definition> 
+   
+   <!-- Users Page -->
+   <definition name="users" extends="base-definition">  
+       <put-attribute name="title" value="Users" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/users.jsp" />  
+   </definition> 
+   
+   <!-- Menu Page -->
+   <definition name="menu" extends="base-definition">  
+       <put-attribute name="title" value="menu" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/menu.jsp" />  
+   </definition> 
+   
+   <!-- Menu Master Page -->
+   <definition name="menumaster" extends="base-definition">  
+       <put-attribute name="title" value="menumaster" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/menumaster.jsp" />  
+   </definition> 
+   
+   <!-- L1 Menu Page -->
+   <definition name="l1menu" extends="base-definition">  
+       <put-attribute name="title" value="l1menu" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/l1menu.jsp" />  
+   </definition>
+   
+   <!-- L2 Menu Page -->
+   <definition name="l2menu" extends="base-definition">  
+       <put-attribute name="title" value="l2menu" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/l2menu.jsp" />  
+   </definition> 
+    
+   <!-- L3 Menu Page -->
+   <definition name="l3menu" extends="base-definition">  
+       <put-attribute name="title" value="l3menu" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/l3menu.jsp" />  
+   </definition>
+    
+   <!-- Establishment Page -->
+   <definition name="establishment" extends="base-definition">  
+       <put-attribute name="title" value="Establishment" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/establishment.jsp" />  
+   </definition>  
+
+	<!-- Floor Page -->
+   <definition name="floor" extends="base-definition">  
+       <put-attribute name="title" value="Floor" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/floor.jsp" />  
+   </definition>
+
+   <!-- Tables Page -->
+   <definition name="tables" extends="base-definition">  
+       <put-attribute name="title" value="Tables" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/tables.jsp" />  
+   </definition>  
+   
+   <!-- Taxes Page -->
+   <definition name="taxes" extends="base-definition">  
+       <put-attribute name="title" value="Taxes" />  
+       <put-attribute name="body" value="/WEB-INF/views/pages/taxes.jsp" />  
+   </definition>
+
+</tiles-definitions>
