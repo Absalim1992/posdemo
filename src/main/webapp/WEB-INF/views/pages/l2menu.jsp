@@ -39,13 +39,22 @@ $(document).ready(function(){
 				<option value="${mm.id }">${mm.name }</option>
 			</c:forEach>
 		</select></td></tr>
+		
 		<tr><td><label>L1 Menu:</label></td>
 		<td><select id="comboboxL1menu">
 			<option value="-1">Select L1Menu</option>
 		</select></td></tr>
 	
-		<tr><td><label>L2 Name:</label>
-		<form:input path="name" id="name" /></td></tr>
+		<tr><td><label>L2 Name:</label></td>
+		<td><form:input path="name" id="name" /></td></tr>
+		
+		<tr><td><label>Taxes:</label></td>
+		<td><select id="comboboxTaxes">
+			<option value="-1">Select a taxes</option>
+			<c:forEach var="tax" items="${taxList}">
+				<option value="${tax.id }">${tax.taxrate}</option>
+			</c:forEach>
+		</select></td></tr><br/><br/>
 		<tr><td colspan="2" align="center"><input type="submit" value="ADD" /></td></tr>
 	</table>
 	</div>

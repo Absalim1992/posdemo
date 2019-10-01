@@ -7,16 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "l1menu")
@@ -33,6 +26,18 @@ public class L1menu implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<L2menu> listL2Menu = new ArrayList<L2menu>(0);
 	
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Taxes> listtax = new ArrayList<Taxes>(0);
+	
+	public List<Taxes> getListtax() {
+		return listtax;
+	}
+
+	public void setListtax(List<Taxes> listtax) {
+		this.listtax = listtax;
+	}
+
 	public List<L2menu> getListL2Menu() {
 		return listL2Menu;
 	}
@@ -67,9 +72,11 @@ public class L1menu implements Serializable{
 		
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "L1menu [id=" + id + ", name=" + name + "]";
+		return "L1menu [id=" + id + ", name=" + name + ", listL2Menu=" + listL2Menu + ", listtax=" + listtax + "]";
 	}
 
 	public L1menu(int id, String name, List<L2menu> listL2Menu) {
