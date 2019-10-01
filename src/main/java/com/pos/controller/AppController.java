@@ -146,12 +146,12 @@ public class AppController {
 		List<MenuMaster> menumasterList = posservice.findMenuMasters();
 		model.addAttribute("menumasterList", menumasterList);
 		
-		//List<Taxes> taxList = posservice.findTaxes();
-		//model.addAttribute("taxList", taxList);
+		List<Taxes> taxList = posservice.findTaxes();
+		model.addAttribute("taxList", taxList);
 				
-		List<Taxes> taxList2 = posservice.findTaxes();
+		/*List<Taxes> taxList2 = posservice.findTaxes();
 		Map<Integer, Float> taxList = taxList2.stream().collect(Collectors.toMap(Taxes::getId, Taxes::getTaxrate)) ;
-		model.addAttribute("taxList", taxList.values());
+		model.addAttribute("taxList", taxList.values());*/
 		
 		/*List<L1menu> l1menuList = posservice.findL1Menu();
 		model.addAttribute("l1menuList", l1menuList);*/
@@ -168,9 +168,9 @@ public class AppController {
 		List<MenuMaster> menumasterList = posservice.findMenuMasters();
 		model.addAttribute("menumasterList", menumasterList);
 		
-		List<Taxes> taxList2 = posservice.findTaxes();
+		List<Taxes> taxList = posservice.findTaxes();
 		//Map<Integer, Float> taxList = taxList2.stream().collect(Collectors.toMap(Taxes::getId, Taxes::getTaxrate)) ;
-		model.addAttribute("taxList", taxList2);
+		model.addAttribute("taxList", taxList);
 		
 		L1menu l1menu = new L1menu();
 		model.addAttribute("l1menu", l1menu);
@@ -185,9 +185,9 @@ public class AppController {
 		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();		
 		model.addAttribute("menumasterList", menumasterList2);
 		
-		List<Taxes> taxList2 = posservice.findTaxes();
+		List<Taxes> taxList = posservice.findTaxes();
 		//Map<Integer, Float> taxList = taxList2.stream().collect(Collectors.toMap(Taxes::getId, Taxes::getTaxrate)) ;
-		model.addAttribute("taxList", taxList2);
+		model.addAttribute("taxList", taxList);
 		return "l2menu";
 	}
 	
@@ -201,9 +201,9 @@ public class AppController {
 		//Map<Integer,String> menumasterList = menumasterList2.stream().collect(Collectors.toMap(MenuMaster::getId, MenuMaster::getMenumaster));		
 		model.addAttribute("menumasterList", menumasterList2);
 		
-		List<Taxes> taxList2 = posservice.findTaxes();
+		List<Taxes> taxList = posservice.findTaxes();
 		//Map<Integer, Float> taxList = taxList2.stream().collect(Collectors.toMap(Taxes::getId, Taxes::getTaxrate)) ;
-		model.addAttribute("taxList", taxList2);
+		model.addAttribute("taxList", taxList);
 		
 		L2menu l2menu = new L2menu();
 		model.addAttribute("l2menu", l2menu);
