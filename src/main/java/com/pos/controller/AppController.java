@@ -1,7 +1,6 @@
 package com.pos.controller;
 
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -21,11 +20,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.google.gson.Gson;
 import com.pos.model.Establishment;
 import com.pos.model.Floor;
-import com.pos.model.L1bean;
+import com.google.gson.Gson;
+import com.pos.model.Establishment;
+import com.pos.model.Floor;
 import com.pos.model.L1menu;
 import com.pos.model.L2menu;
 import com.pos.model.L3menu;
@@ -53,23 +53,27 @@ public class AppController {
 		model.addAttribute("establishment", establishment);
 		System.out.println("Establishment obj - " + establishment);
 		
-		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();
-		Map<Integer,String> menumasterList = menumasterList2.stream().collect(Collectors.toMap(MenuMaster::getId, MenuMaster::getName));		
-		model.addAttribute("menumasterList", menumasterList.values());
-		System.out.println(menumasterList.values());
+		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();		
+		model.addAttribute("menumasterList", menumasterList2);
+		
+		List<MenuMaster> menumasterList = posservice.findMenuMasters();
+		model.addAttribute("menumasterList", menumasterList);
+		System.out.println(menumasterList);
 		List<Establishment> establishmentList = posservice.findEstablishments();
 		model.addAttribute("establishmentList", establishmentList);
 		return "establishment";
 	}
 	
 	@RequestMapping(value = { "/establishment"}, method = RequestMethod.POST)
-	public String saveestablishment(@Valid Establishment establishment, BindingResult result, ModelMap model) {
-		//System.out.println("ESTABLISHMENT -" + establishment.getId() + " : " + establishment.getEstid() + " : " + establishment.getEstname() + " : " + establishment.getMenumaster());
-		posservice.addEstablishment(establishment);
+	public String saveestablishment(@Valid Establishment establishment1, BindingResult result, ModelMap model) {
+		System.out.println();
+		posservice.addEstablishment(establishment1);
 		
 		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();
-		Map<Integer,String> menumasterList = menumasterList2.stream().collect(Collectors.toMap(MenuMaster::getId, MenuMaster::getName));		
-		model.addAttribute("menumasterList", menumasterList.values());
+		model.addAttribute("menumasterList", menumasterList2);
+		
+		Establishment establishment = new Establishment();
+		model.addAttribute("establishment", establishment);
 		
 		List<Establishment> establishmentList = posservice.findEstablishments();
 		model.addAttribute("establishmentList", establishmentList);
@@ -82,8 +86,7 @@ public class AppController {
 		model.addAttribute("floor", floor);
 		
 		List<Establishment> establishmentList2 = posservice.findEstablishments();
-		Map<Integer,String> establishmentList = establishmentList2.stream().collect(Collectors.toMap(Establishment::getId, Establishment::getEstname));
-		model.addAttribute("establishmentList", establishmentList.values());
+		model.addAttribute("establishmentList", establishmentList2);
 		
 		List<Floor> floorList = posservice.findFloors();
 		model.addAttribute("floorList", floorList);
@@ -91,12 +94,15 @@ public class AppController {
 	}
 	
 	@RequestMapping(value = { "/floor"}, method = RequestMethod.POST)
-	public String savefloor(@Valid Floor floor, BindingResult result, ModelMap model) {
-		posservice.addFloor(floor);
+	public String savefloor(@Valid Floor floor1, BindingResult result, ModelMap model) {
+		System.out.println(floor1);
+		posservice.addFloor(floor1);
 		
 		List<Establishment> establishmentList2 = posservice.findEstablishments();
-		Map<Integer,String> establishmentList = establishmentList2.stream().collect(Collectors.toMap(Establishment::getId, Establishment::getEstname));
-		model.addAttribute("establishmentList", establishmentList.values());
+		model.addAttribute("establishmentList", establishmentList2);
+		
+		Floor floor = new Floor();
+		model.addAttribute("floor", floor);
 		return "floor";
 	}
 	
@@ -236,6 +242,21 @@ public class AppController {
 	public String tablesPage(ModelMap model) {
 		Tables tables = new Tables();
 		model.addAttribute("tables", tables);
+
+		
+		List<Floor> floorList = posservice.findFloors();
+		model.addAttribute("floorList", floorList);
+		return "tables";
+	}
+	
+	@RequestMapping(value = { "/tables"}, method = RequestMethod.POST)
+	public String tablesSave(@Valid Tables tables1, BindingResult result, ModelMap model) {
+		System.out.println(tables1);
+		posservice.addTables(tables1);
+		Tables tables = new Tables();
+		model.addAttribute("tables", tables);
+		List<Floor> floorList = posservice.findFloors();
+		model.addAttribute("floorList", floorList);
 		return "tables";
 	}
 	

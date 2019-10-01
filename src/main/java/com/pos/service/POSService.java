@@ -3,14 +3,13 @@ package com.pos.service;
 import java.util.List;
 
 import com.pos.model.MenuMaster;
+import com.pos.model.Tables;
 import com.pos.model.Taxes;
 import com.pos.model.Establishment;
 import com.pos.model.Floor;
 import com.pos.model.L1menu;
 import com.pos.model.L2menu;
 import com.pos.model.L3menu;
-import com.pos.model.MenuMaster;
-import com.pos.model.Taxes;
 import com.pos.model.Users;
 
 public interface POSService {
@@ -38,6 +37,8 @@ public interface POSService {
 	void addFloor(Floor floor);
 	
 	List<Floor> findFloors();
+	
+	void addTables(Tables tables);
 	
 	void addUser(Users user);
 	

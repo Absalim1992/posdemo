@@ -29,6 +29,17 @@ public class MenuMaster {
 	@OneToMany(cascade = CascadeType.ALL)
     private List<L1menu> listL1Menu = new ArrayList<>(0);
 
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Establishment> listEstablishment = new ArrayList<>(0);
+	
+	public List<Establishment> getListEstablishment() {
+		return listEstablishment;
+	}
+
+	public void setListEstablishment(List<Establishment> listEstablishment) {
+		this.listEstablishment = listEstablishment;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -67,6 +78,6 @@ public class MenuMaster {
 	@Override
 	public String toString() {
 		return "MenuMaster [id=" + id + ", name=" + name + ", listL1Menu=" + listL1Menu + "]";
-	}	
+	}
 
 }

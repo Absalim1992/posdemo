@@ -1,5 +1,6 @@
 package com.pos.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -18,25 +19,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "establishment")
-public class Establishment {
-
+public class Establishment implements Serializable{
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue	
+	@Column(name = "est_id")
 	private int id;
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-	@Column(name = "estid", unique=true, nullable = false)
-	private int estid;
-	
 	@Size(min=3, max=50)
-	@Column(name = "estname", nullable = false)
-	private String estname;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "menumasterid")
-	private MenuMaster menumaster;
-	
-	@OneToMany(mappedBy = "establishment", cascade = CascadeType.ALL)
+	@Column(name = "est_name", nullable = false)
+	private String name;
+		
+	@OneToMany(cascade = CascadeType.ALL)
     private List<Floor> listFloor = new ArrayList<>(0);
 
 	public List<Floor> getListFloor() {
@@ -45,12 +39,6 @@ public class Establishment {
 
 	public void setListFloor(List<Floor> listFloor) {
 		this.listFloor = listFloor;
-	}
-
-	public Establishment(String estname, MenuMaster menumaster) {
-		
-		this.estname = estname;
-		this.menumaster = menumaster;
 	}
 
 	public Establishment() {
@@ -65,40 +53,28 @@ public class Establishment {
 		this.id = id;
 	}
 
-	public String getEstname() {
-		return estname;
+	public String getName() {
+		return name;
 	}
 
-	public void setEstname(String estname) {
-		this.estname = estname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
+	public Establishment(int id, String name, List<Floor> listFloor) {
+		this.id = id;
+		this.name = name;
+		this.listFloor = listFloor;
+	}
 	
-
-	public MenuMaster getMenumaster() {
-		return menumaster;
-	}
-
-	public void setMenumaster(MenuMaster menumaster) {
-		this.menumaster = menumaster;
-	}
-
-	public int getEstid() {
-		return estid;
-	}
-
-	public void setEstid(int estid) {
-		this.estid = estid;
-	}
-
 	@Override
 	public String toString() {
-		return "Establishment [estname=" + estname + "]";
+		return "Establishment [id=" + id + ", name=" + name + ", listFloor=" + listFloor + "]";
 	}
 
-	
-
-	
-	
-	
+	public Establishment(int id, String name) {
+		
+		this.id = id;
+		this.name = name;
+	}
 }

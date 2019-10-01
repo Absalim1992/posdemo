@@ -17,41 +17,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Tables {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
+	@Column(name = "table_id")
 	private int id;
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "tableid", unique=true, nullable = false)
-	private int tableid;
-	
-	@ManyToOne
-    @JoinColumn(name = "floorid")
-    private Floor floor;
-	
 	@Size(min=3, max=50)
-	@Column(name = "tablename", nullable = false)
-	private String tablename;
+	@Column(name = "table_name", nullable = false)
+	private String name;
 	
 	@Column(name = "capacity", nullable = false)
 	private int capacity;
 
 	public Tables() {
 
-	}
-
-	public Tables(Floor floor, String tablename, int capacity) {
-		
-		this.floor = floor;
-		this.tablename = tablename;
-		this.capacity = capacity;
-	}
-
-	public Floor getFloor() {
-		return floor;
-	}
-
-	public void setFloor(Floor floor) {
-		this.floor = floor;
 	}
 
 	public int getId() {
@@ -62,14 +40,6 @@ public class Tables {
 		this.id = id;
 	}
 
-	public String getTablename() {
-		return tablename;
-	}
-
-	public void setTablename(String tablename) {
-		this.tablename = tablename;
-	}
-
 	public int getCapacity() {
 		return capacity;
 	}
@@ -78,18 +48,25 @@ public class Tables {
 		this.capacity = capacity;
 	}
 
-	public int getTableid() {
-		return tableid;
+	public String getName() {
+		return name;
 	}
 
-	public void setTableid(int tableid) {
-		this.tableid = tableid;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Tables(int id, String name, int capacity) {
+		
+		this.id = id;
+		this.name = name;
+		this.capacity = capacity;
 	}
 
 	@Override
 	public String toString() {
-		return "Tables [tableid=" + tableid + ", floor=" + floor + ", tablename=" + tablename + ", capacity=" + capacity
-				+ "]";
+		return "Tables [id=" + id + ", name=" + name + ", capacity=" + capacity + "]";
 	}
+
 
 }
