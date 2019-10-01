@@ -101,9 +101,10 @@ public class AppController {
 	}
 	
 	@RequestMapping(value = { "/users"}, method = RequestMethod.POST)
-	public String addusers(@Valid Users users, BindingResult result, ModelMap model) {
-		posservice.addUser(users);
-		
+	public String addusers(@Valid Users users1, BindingResult result, ModelMap model) {
+		posservice.addUser(users1);
+		Users users = new Users();
+		model.addAttribute("users", users);
 		return "users";
 	}
 
