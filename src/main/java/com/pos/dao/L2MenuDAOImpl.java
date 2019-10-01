@@ -52,7 +52,7 @@ public class L2MenuDAOImpl extends AbstractDao<Integer, L2menu> implements L2Men
 		}finally{
 			session.close();
 		}
-		
+		System.out.println(l1menulist.size());
 		return l1menulist;
 	}
 

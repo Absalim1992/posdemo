@@ -74,16 +74,17 @@ public class L1menu implements Serializable{
 
 	
 
+	
 	@Override
 	public String toString() {
-		return "L1menu [id=" + id + ", name=" + name + ", listL2Menu=" + listL2Menu + ", listtax=" + listtax + "]";
+		return "L1menu [id=" + id + ", name=" + name + "]";
 	}
 
-	public L1menu(int id, String name, List<L2menu> listL2Menu) {
-		
-		this.id = id;
+	public L1menu(String name) {
+		super();
 		this.name = name;
-		this.listL2Menu = listL2Menu;
 	}
+
+	
 	
 }
