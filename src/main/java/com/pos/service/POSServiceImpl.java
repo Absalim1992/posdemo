@@ -1,15 +1,15 @@
 package com.pos.service;
 
 import java.util.List;
-
 import org.jboss.logging.annotations.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.pos.dao.MenuMasterDAO;
+import com.pos.dao.TablesDAO;
 import com.pos.dao.TaxDAO;
 import com.pos.model.MenuMaster;
+import com.pos.model.Tables;
 import com.pos.model.Taxes;
 import com.pos.dao.EstablishmentDAO;
 import com.pos.dao.FloorDAO;
@@ -33,6 +33,9 @@ public class POSServiceImpl implements POSService{
 
 	@Autowired
 	private MenuMasterDAO mmdao;
+	
+	@Autowired
+	private TablesDAO tablesdao;
 	
 	@Autowired
 	private TaxDAO taxdao;
@@ -138,6 +141,10 @@ public class POSServiceImpl implements POSService{
 		l3menudao.addL3menu(l3menu);
 	}
 
+	@Override
+	public void addTables(Tables tables) {
+		tablesdao.addTables(tables);
+	}
 
 
 }

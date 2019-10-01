@@ -23,41 +23,19 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Floor {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
+	@Column(name = "floor_id")
 	private int id;
 	
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "floorid", unique=true, nullable = false)
-	private int floorid;
+	@Column(name = "floor_name", nullable = false)
+	private String name;
 	
-	@Column(name = "floorname", nullable = false)
-	private String floorname;
-	
-	@ManyToOne
-    @JoinColumn(name = "estid")
-    private Establishment establishment;
-    
-    @OneToMany(mappedBy = "floor", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Tables> listTables = new ArrayList<>(0);
 
 	public Floor() {
 		
 	}
-
-	public Floor(String floorname, Establishment establishment) {
-		
-		this.floorname = floorname;
-		this.establishment = establishment;
-	}
-
-	public Establishment getEstablishment() {
-		return establishment;
-	}
-
-	public void setEstablishment(Establishment establishment) {
-		this.establishment = establishment;
-	}
-
 	public List<Tables> getListTables() {
 		return listTables;
 	}
@@ -74,25 +52,24 @@ public class Floor {
 		this.id = id;
 	}
 
-	public String getFloorname() {
-		return floorname;
+	public String getName() {
+		return name;
 	}
 
-	public void setFloorname(String floorname) {
-		this.floorname = floorname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getFloorid() {
-		return floorid;
-	}
-
-	public void setFloorid(int floorid) {
-		this.floorid = floorid;
-	}
-
-	@Override
-	public String toString() {
-		return "Floor [floorid=" + floorid + ", floorname=" + floorname + ", establishment=" + establishment + "]";
+	public Floor(int id, String name, List<Tables> listTables) {
+		
+		this.id = id;
+		this.name = name;
+		this.listTables = listTables;
 	}
 	
+	@Override
+	public String toString() {
+		return "Floor [id=" + id + ", name=" + name + ", listTables=" + listTables + "]";
+	}
+
 }
