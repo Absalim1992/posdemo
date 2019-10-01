@@ -1,10 +1,8 @@
 package com.pos.dao;
 
 import java.util.List;
-
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
-
 import com.pos.model.Establishment;
 
 @Repository("establishmentdao")
