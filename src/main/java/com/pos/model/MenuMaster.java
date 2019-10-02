@@ -77,7 +77,7 @@ public class MenuMaster {
 
 	@Override
 	public String toString() {
-		return "MenuMaster [id=" + id + ", name=" + name + ", listL1Menu=" + listL1Menu + "]";
+		return "MenuMaster [id=" + id + ", name=" + name + "]";
 	}
 
 }

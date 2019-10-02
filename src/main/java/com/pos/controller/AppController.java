@@ -51,16 +51,12 @@ public class AppController {
 	public String establishmentPage(ModelMap model) {
 		Establishment establishment = new Establishment();
 		model.addAttribute("establishment", establishment);
-		System.out.println("Establishment obj - " + establishment);
-		
-		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();		
-		model.addAttribute("menumasterList", menumasterList2);
 		
 		List<MenuMaster> menumasterList = posservice.findMenuMasters();
 		model.addAttribute("menumasterList", menumasterList);
 		System.out.println(menumasterList);
-		List<Establishment> establishmentList = posservice.findEstablishments();
-		model.addAttribute("establishmentList", establishmentList);
+		/*List<Establishment> establishmentList = posservice.findEstablishments();
+		model.addAttribute("establishmentList", establishmentList);*/
 		return "establishment";
 	}
 	
@@ -75,8 +71,8 @@ public class AppController {
 		Establishment establishment = new Establishment();
 		model.addAttribute("establishment", establishment);
 		
-		List<Establishment> establishmentList = posservice.findEstablishments();
-		model.addAttribute("establishmentList", establishmentList);
+		/*List<Establishment> establishmentList = posservice.findEstablishments();
+		model.addAttribute("establishmentList", establishmentList);*/
 		return "establishment";
 	}
 	
@@ -155,10 +151,6 @@ public class AppController {
 		
 		List<Taxes> taxList = posservice.findTaxes();
 		model.addAttribute("taxList", taxList);
-				
-		/*List<Taxes> taxList2 = posservice.findTaxes();
-		Map<Integer, Float> taxList = taxList2.stream().collect(Collectors.toMap(Taxes::getId, Taxes::getTaxrate)) ;
-		model.addAttribute("taxList", taxList.values());*/
 		
 		/*List<L1menu> l1menuList = posservice.findL1Menu();
 		model.addAttribute("l1menuList", l1menuList);*/
@@ -300,6 +292,5 @@ public class AppController {
 		return gson.toJson(posservice.findByL1(id));
 		
 	}
-	
 	
 }

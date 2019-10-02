@@ -66,10 +66,10 @@ public class Establishment implements Serializable{
 		this.name = name;
 		this.listFloor = listFloor;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Establishment [id=" + id + ", name=" + name + ", listFloor=" + listFloor + "]";
+		return "Establishment [id=" + id + ", name=" + name + "]";
 	}
 
 	public Establishment(int id, String name) {
