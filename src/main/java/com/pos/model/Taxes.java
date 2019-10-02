@@ -14,18 +14,16 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "taxes")
 public class Taxes {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "tax_id")
 	private int id;
 	
-	@NotNull
-	@Column(name = "taxid", unique=true, nullable = false)
-	private String taxid;
-	
-	@Column(name = "taxname", nullable = false)
+	@Column(name = "tax_name", nullable = false)
 	private String taxname;
 	
-	@Column(name = "taxrate", nullable = false)
+	@Column(name = "tax_rate", nullable = false)
 	private float taxrate;
 	
 	@Column(name = "status", nullable = false)
@@ -33,16 +31,6 @@ public class Taxes {
 
 	public int getId() {
 		return id;
-	}
-
-	public Taxes() {
-		
-	}
-
-	public Taxes(String taxname, float taxrate, String status) {
-		this.taxname = taxname;
-		this.taxrate = taxrate;
-		this.status = status;
 	}
 
 	public void setId(int id) {
@@ -73,23 +61,20 @@ public class Taxes {
 		this.status = status;
 	}
 
-	
-
-	public String getTaxid() {
-		return taxid;
+	public Taxes(int id, String taxname, float taxrate, String status) {
+		
+		this.id = id;
+		this.taxname = taxname;
+		this.taxrate = taxrate;
+		this.status = status;
 	}
 
-	public void setTaxid(String taxid) {
-		this.taxid = taxid;
-	}
+	public Taxes() {
+			}
 
 	@Override
 	public String toString() {
-		return "Taxes [id=" + id + ", taxid=" + taxid + ", taxname=" + taxname + ", taxrate=" + taxrate + ", status="
-				+ status + "]";
-	}
-
-	
-	
+		return "Taxes [id=" + id + ", taxname=" + taxname + ", taxrate=" + taxrate + ", status=" + status + "]";
+	}	
 	
 }

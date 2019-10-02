@@ -7,16 +7,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
+
+
 
 @Entity
 @Table(name = "l2menu")
@@ -32,6 +27,9 @@ public class L2menu implements Serializable{
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<L3menu> listL3Menu = new ArrayList<L3menu>(0);
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Taxes> listtax = new ArrayList<Taxes>(0);
 
 	public L2menu(int id, String name) {
 		
@@ -59,11 +57,6 @@ public class L2menu implements Serializable{
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "L2menu [id=" + id + ", name=" + name + "]";
-	}
-
 	public List<L3menu> getListL3Menu() {
 		return listL3Menu;
 	}
@@ -72,11 +65,18 @@ public class L2menu implements Serializable{
 		this.listL3Menu = listL3Menu;
 	}
 
-	public L2menu(int id, String name, List<L3menu> listL3Menu) {
-		
-		this.id = id;
-		this.name = name;
-		this.listL3Menu = listL3Menu;
+	public List<Taxes> getListtax() {
+		return listtax;
 	}
+
+	public void setListtax(List<Taxes> listtax) {
+		this.listtax = listtax;
+	}
+
+	@Override
+	public String toString() {
+		return "L2menu [id=" + id + ", name=" + name + ", listL3Menu=" + listL3Menu + ", listtax=" + listtax + "]";
+	}
+
 	
 }

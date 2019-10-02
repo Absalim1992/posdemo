@@ -211,6 +211,9 @@ public class AppController {
 		
 		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();
 		model.addAttribute("menumasterList", menumasterList2);
+		
+		List<Taxes> taxList = posservice.findTaxes();
+		model.addAttribute("taxList", taxList);
 		return "l3menu";
 	}
 	
@@ -223,6 +226,9 @@ public class AppController {
 		
 		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();
 		model.addAttribute("menumasterList", menumasterList2);
+		
+		List<Taxes> taxList = posservice.findTaxes();
+		model.addAttribute("taxList", taxList);
 		return "l3menu";
 	}
 	

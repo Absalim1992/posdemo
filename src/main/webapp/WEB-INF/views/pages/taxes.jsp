@@ -10,10 +10,7 @@
     <form:input type="hidden" path="status" id="status" value="ACTIVE"/>
     
     <table cellpadding="3">
-    <tr>
-    	<td><label>Tax ID:</label></td>
-    	<td><form:input path="taxid" id="taxid"/></td>
-    </tr>
+
 	<tr>
 		<td><label>Tax Name:</label></td>
 		<td><form:input path="taxname" id="taxname"  /></td>
