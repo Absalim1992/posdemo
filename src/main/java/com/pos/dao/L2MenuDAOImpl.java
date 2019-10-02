@@ -2,6 +2,9 @@ package com.pos.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -13,6 +16,7 @@ import com.pos.model.L2menu;
 import com.pos.model.MenuMaster;
 
 @Repository("l2menudao")
+@Transactional
 public class L2MenuDAOImpl extends AbstractDao<Integer, L2menu> implements L2MenuDAO{
 
 	@Autowired
@@ -52,7 +56,7 @@ public class L2MenuDAOImpl extends AbstractDao<Integer, L2menu> implements L2Men
 		}finally{
 			session.close();
 		}
-		
+		System.out.println(l1menulist.size());
 		return l1menulist;
 	}
 

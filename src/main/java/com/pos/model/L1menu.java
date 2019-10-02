@@ -25,7 +25,6 @@ public class L1menu implements Serializable{
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<L2menu> listL2Menu = new ArrayList<L2menu>(0);
-	
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Taxes> listtax = new ArrayList<Taxes>(0);
@@ -72,18 +71,17 @@ public class L1menu implements Serializable{
 		
 	}
 
-	
 
 	@Override
 	public String toString() {
-		return "L1menu [id=" + id + ", name=" + name + ", listL2Menu=" + listL2Menu + ", listtax=" + listtax + "]";
+		return "L1menu [id=" + id + ", name=" + name + "]";
 	}
 
-	public L1menu(int id, String name, List<L2menu> listL2Menu) {
-		
-		this.id = id;
+	public L1menu(String name) {
+		super();
 		this.name = name;
-		this.listL2Menu = listL2Menu;
 	}
+
+	
 	
 }

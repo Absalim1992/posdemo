@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class MenuMaster {
 	@Column(name = "menumaster_name", nullable = false)
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private List<L1menu> listL1Menu = new ArrayList<>(0);
 
 	@OneToMany(cascade = CascadeType.ALL)
@@ -64,11 +65,11 @@ public class MenuMaster {
 		this.listL1Menu = listL1Menu;
 	}
 
-	public MenuMaster(int id, String name, List<L1menu> listL1Menu) {
-		
-		this.id = id;
+	
+
+	public MenuMaster(String name) {
+	
 		this.name = name;
-		this.listL1Menu = listL1Menu;
 	}
 
 	public MenuMaster() {
@@ -77,7 +78,9 @@ public class MenuMaster {
 
 	@Override
 	public String toString() {
-		return "MenuMaster [id=" + id + ", name=" + name + ", listL1Menu=" + listL1Menu + "]";
+		return "MenuMaster [id=" + id + ", name=" + name + "]";
 	}
+
+	
 
 }
