@@ -8,6 +8,7 @@
 				$('#comboboxMenumaster').on('change',function() {
 				var mmId = $('#comboboxMenumaster option:selected').val();
 				alert(mmId);
+				$("#uid").val(mmId);
 
 				$.ajax({
 						type : 'GET',
@@ -34,19 +35,19 @@
 				<table cellpadding="5">
 					<tr>
 						<td><label>MenuMaster:</label></td>
-						<td><select id="comboboxMenumaster">
+						<td><form:select id="comboboxMenumaster" path="uid">
 								<option value="-1">Select MenuMaster</option>
 								<c:forEach var="mm" items="${menumasterList }">
 									<option value="${mm.id }">${mm.name }</option>
 								</c:forEach>
-						</select></td>
+						</form:select></td>
 					</tr>
 					<tr>
 						<td><label>L1 Name:</label></td>
 						<td><form:input path="name" id="name" /></td>
 					</tr>
 
-					<tr>
+					<%-- <tr>
 						<td><label>Taxes:</label></td>
 						<td><select id="comboboxTaxes">
 								<option value="-1">Select a taxes</option>
@@ -54,7 +55,7 @@
 									<option value="${tax.id }">${tax.taxrate}</option>
 								</c:forEach>
 						</select></td>
-					</tr>
+					</tr> --%>
 					<br />
 					<br />
 					<tr>

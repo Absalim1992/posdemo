@@ -9,13 +9,14 @@ $(document).ready(function(){
 		
 		var mmId = $('#comboboxMenumaster option:selected').val();
 		alert(mmId);
+		$("#lid").val(mmId);
 		
 		$.ajax({
 			type: 'GET',
 			url: 'loadL1menu/' + mmId,
 			success: function(result){
 				var result = JSON.parse(result);
-				var s = '';
+				var s = '<option value= -1 > Select L1Menu </option>';
 				for(var i = 0; i < result.length; i++){
 					s += '<option value="'+ result[i].id +'">' + result[i].name + '</option>';
 				}
@@ -41,20 +42,20 @@ $(document).ready(function(){
 		</select></td></tr>
 		
 		<tr><td><label>L1 Menu:</label></td>
-		<td><select id="comboboxL1menu">
+		<td><form:select id="comboboxL1menu" path="lid">
 			<option value="-1">Select L1Menu</option>
-		</select></td></tr>
+		</form:select></td></tr>
 	
 		<tr><td><label>L2 Name:</label></td>
 		<td><form:input path="name" id="name" /></td></tr>
 		
-		<tr><td><label>Taxes:</label></td>
+		<%-- <tr><td><label>Taxes:</label></td>
 		<td><select id="comboboxTaxes">
 			<option value="-1">Select a taxes</option>
 			<c:forEach var="tax" items="${taxList}">
 				<option value="${tax.id }">${tax.taxrate}</option>
 			</c:forEach>
-		</select></td></tr><br/><br/>
+		</select></td></tr><br/><br/> --%>
 		<tr><td colspan="2" align="center"><input type="submit" value="ADD" /></td></tr>
 	</table>
 	</div>

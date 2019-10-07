@@ -15,6 +15,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
+
 @Entity
 @Table(name = "menumaster")
 public class MenuMaster {
@@ -27,10 +28,10 @@ public class MenuMaster {
 	@Column(name = "menumaster_name", nullable = false)
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-    private List<L1menu> listL1Menu = new ArrayList<>(0);
+	@OneToMany(targetEntity=L1menu.class,cascade = CascadeType.ALL,mappedBy="master")
+    private List<L1menu> listL1Menu = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.ALL)
+	/*@OneToMany(cascade = CascadeType.ALL)
 	private List<Establishment> listEstablishment = new ArrayList<>(0);
 	
 	public List<Establishment> getListEstablishment() {
@@ -40,7 +41,7 @@ public class MenuMaster {
 	public void setListEstablishment(List<Establishment> listEstablishment) {
 		this.listEstablishment = listEstablishment;
 	}
-
+*/
 	public int getId() {
 		return id;
 	}

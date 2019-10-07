@@ -147,6 +147,11 @@ public class AppController {
 	@RequestMapping(value = { "/l1menu"}, method = RequestMethod.POST)
 	public String saveL1menu(@Valid L1menu l1menu1, BindingResult result, ModelMap model) {
 		System.out.println(l1menu1);
+		
+		MenuMaster mas=new MenuMaster();
+		mas.setId(l1menu1.getUid());
+		l1menu1.setMaster(mas);
+		
 		posservice.addL1menu(l1menu1);
 		/*List<L1menu> l1menuList = posservice.findL1Menu();
 		model.addAttribute("l1menuList", l1menuList);	*/	
@@ -179,6 +184,11 @@ public class AppController {
 	
 	@RequestMapping(value = { "/l2menu"}, method = RequestMethod.POST)
 	public String savel2menu(@Valid L2menu l2menu1, BindingResult result, ModelMap model) {
+		
+		L1menu l1 = new L1menu();
+		l1.setId(l2menu1.getLid());
+		l2menu1.setL1menu(l1);
+		
 		posservice.addL2menu(l2menu1);
 		//List<L2menu> l2menuList = posservice.findL2Menu();
 		//model.addAttribute("l2menuList", l2menuList);
@@ -211,6 +221,14 @@ public class AppController {
 	
 	@RequestMapping(value = { "/l3menu"}, method = RequestMethod.POST)
 	public String l3menuSave(@Valid L3menu l3menu1, BindingResult result, ModelMap model) {
+		L2menu l2 = new L2menu();
+		l2.setId(l3menu1.getLid());
+		l3menu1.setL2menu(l2);
+		
+		Taxes tax = new Taxes();
+		tax.setId(l3menu1.getTid());
+		l3menu1.setTax(tax);
+		
 		posservice.addL3menu(l3menu1);
 		
 		L3menu l3menu = new L3menu();

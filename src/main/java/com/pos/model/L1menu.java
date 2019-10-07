@@ -8,8 +8,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+
+
+
 
 @Entity
 @Table(name = "l1menu")
@@ -23,26 +30,32 @@ public class L1menu implements Serializable{
 	@Column(name = "l1menu_name", nullable = false)
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<L2menu> listL2Menu = new ArrayList<L2menu>(0);
-
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Taxes> listtax = new ArrayList<Taxes>(0);
+	@ManyToOne(targetEntity=MenuMaster.class)
+	@JoinColumn(name="menumaster_id")
+	MenuMaster master;
 	
-	public List<Taxes> getListtax() {
-		return listtax;
+	@OneToMany(targetEntity = L2menu.class, cascade = CascadeType.ALL, mappedBy ="l1menu")
+    private List<L2menu> listL2Menu = new ArrayList<>();
+	
+	@Transient
+	Integer uid;
+	
+	
+
+	public MenuMaster getMaster() {
+		return master;
 	}
 
-	public void setListtax(List<Taxes> listtax) {
-		this.listtax = listtax;
+	public void setMaster(MenuMaster master) {
+		this.master = master;
 	}
 
-	public List<L2menu> getListL2Menu() {
-		return listL2Menu;
+	public Integer getUid() {
+		return uid;
 	}
 
-	public void setListL2Menu(List<L2menu> listL2Menu) {
-		this.listL2Menu = listL2Menu;
+	public void setUid(Integer uid) {
+		this.uid = uid;
 	}
 
 	public int getId() {
@@ -81,6 +94,16 @@ public class L1menu implements Serializable{
 		super();
 		this.name = name;
 	}
+
+	public List<L2menu> getListL2Menu() {
+		return listL2Menu;
+	}
+
+	public void setListL2Menu(List<L2menu> listL2Menu) {
+		this.listL2Menu = listL2Menu;
+	}
+
+	
 
 	
 	

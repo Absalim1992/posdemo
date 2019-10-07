@@ -6,7 +6,7 @@
 <script>
 $(document).ready(function(){
 	$('#comboboxMenumaster').on('change', function(){
-		$('#comboboxL2menu option').remove();
+		//$('#comboboxL2menu option').remove();
 		
 		var mmId = $('#comboboxMenumaster option:selected').val();
 		alert(mmId);
@@ -16,7 +16,7 @@ $(document).ready(function(){
 			url: 'loadL1menu/' + mmId,
 			success: function(result){
 				var result = JSON.parse(result);
-				var s = '';
+				var s = '<option value= -1 > Select L1Menu </option>';
 				for(var i = 0; i < result.length; i++){
 					s += '<option value="'+ result[i].id +'">' + result[i].name + '</option>';
 				}
@@ -28,19 +28,25 @@ $(document).ready(function(){
 	$('#comboboxL1menu').on('change', function(){
 		var l1Id = $('#comboboxL1menu option:selected').val();
 		alert(l1Id);
+		$("#lid").val(l1Id);
 		
 		$.ajax({
 			type: 'GET',
 			url: 'loadL2menu/' + l1Id,
 			success: function(result){
 				var result = JSON.parse(result);
-				var s = '';
+				var s = '<option value= -1 > Select L2Menu </option>';
 				for(var i = 0; i < result.length; i++){
 					s += '<option value="'+ result[i].id +'">' + result[i].name + '</option>';
 				}
 				$('#comboboxL2menu').html(s);
 			}
 		});
+	});
+	
+	$('#comboboxTaxes').on('change', function(){
+		var mmId = $('#comboboxTaxes option:selected').val();
+		$("#tid").val(mmId);
 	});
 });
 
@@ -66,19 +72,19 @@ $(document).ready(function(){
 					<option value="-1">Select L1Menu</option>
 				</select></td></tr>
 				<tr><td><label>L2 Menu:</label></td>
-				<td> <select id="comboboxL2menu">
+				<td> <form:select id="comboboxL2menu" path="lid">
 					<option value="-1">Select L2Menu</option>
-				</select></td></tr>
+				</form:select></td></tr>
 				<tr><td><label>L3 Name:</label></td>
 				<td><form:input path="name" id="name" /></td></tr>
 				
 				<tr><td><label>Taxes:</label></td>
-		<td><select id="comboboxTaxes">
+		<td><form:select id="comboboxTaxes" path="tid">
 			<option value="-1">Select a taxes</option>
 			<c:forEach var="tax" items="${taxList}">
 				<option value="${tax.id }">${tax.taxrate}</option>
 			</c:forEach>
-		</select></td></tr><br/><br/>
+		</form:select></td></tr><br/><br/>
 				
 				<tr><td colspan="2" align="center"><input type="submit" value="ADD" /></td></tr>
 			</table>
