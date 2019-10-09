@@ -14,12 +14,27 @@ $(document).ready(function(){
 	});
 });
 
+function submitCheck(){
+	var name=document.getElementById("name").value;
+	var combo=document.getElementById("comboboxMenumaster").value;
+	console.log(combo);
+	if(!combo || combo=="-1"){
+		alert("Select Menumaster Combobox");
+		return false;}
+	if(!name || !name.trim()){
+		alert("Enter the name");
+		return false;
+	}
+	alert("Establishment Added Successfully");
+	return true;
+}
+
 </script>
 
 <div align="center">
 	<h1>ESTABLISHMENT TABLE</h1>
 	<hr />
-	<form:form method="POST" modelAttribute="establishment">
+	<form:form method="POST" modelAttribute="establishment" onsubmit="submitCheck()">
 
 		<table cellpadding="3">
 			

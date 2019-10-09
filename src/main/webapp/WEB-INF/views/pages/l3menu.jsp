@@ -50,6 +50,29 @@ $(document).ready(function(){
 	});
 });
 
+function submitCheck(){
+	var name=document.getElementById("name").value;
+	var combo=document.getElementById("comboboxMenumaster").value;
+	var combo1=document.getElementById("comboboxL1menu").value;
+	var combo2=document.getElementById("comboboxL2menu").value;
+	console.log(combo);
+	if(!combo || combo=="-1"){
+		alert(" select Menumaster Combobox");
+		return false;}
+	if(!combo1 || combo1=="-1"){
+		alert(" select L1Menu Combobox");
+		return false;}
+	if(!combo2 || combo2=="-1"){
+		alert(" select L2Menu Combobox");
+		return false;}
+	if(!name || !name.trim()){
+		alert("Enter the name");
+		return false;
+	}
+	alert("L3Menu Added Successfully");
+	return true;
+}
+
 </script>
 
 <body>
@@ -57,7 +80,7 @@ $(document).ready(function(){
 		<h1>L3 MENU</h1>
 		<hr>
 
-		<form:form method="POST" modelAttribute="l3menu">
+		<form:form method="POST" modelAttribute="l3menu" onsubmit="return submitCheck()">
 			<div align="center">
 			<table cellpadding="5">
 				<tr><td><label>MenuMaster:</label></td>
