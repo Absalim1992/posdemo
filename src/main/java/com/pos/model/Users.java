@@ -16,15 +16,15 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Size(min=3, max=50)
+	
 	@Column(name = "username", nullable = false)
 	private String username;
 	
-	@Size(min=3, max=10)
+	
 	@Column(name = "password", nullable = false)
 	private String password;
 	
-	@Size(max=20)
+	
 	@Column(name = "role", nullable = false)
 	private String role;
 

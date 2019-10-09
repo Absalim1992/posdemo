@@ -24,13 +24,28 @@
 				});
 				});
 	});
+	
+	function submitCheck(){
+		var name=document.getElementById("name").value;
+		var combo=document.getElementById("comboboxMenumaster").value;
+		console.log(combo);
+		if(!combo || combo=="-1"){
+			alert("Enter the Combobox");
+			return false;}
+		if(!name || !name.trim()){
+			alert("Enter the name");
+			return false;
+		}
+		alert("L1Menu Added Successfully");
+		return true;
+	}
 </script>
 
 <body>
 	<div align="center">
 		<h1>L1 MENU</h1>
 		<hr>
-		<form:form method="POST" modelAttribute="l1menu">
+		<form:form method="POST" modelAttribute="l1menu" onsubmit="return submitCheck()">
 			<div align="center">
 				<table cellpadding="5">
 					<tr>

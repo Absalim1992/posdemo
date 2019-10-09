@@ -28,7 +28,7 @@ public class Establishment implements Serializable{
 	@Column(name = "est_id")
 	private int id;
 	
-	@Size(min=3, max=50)
+	
 	@Column(name = "est_name", nullable = false)
 	private String name;
 	
