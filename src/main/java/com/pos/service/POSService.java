@@ -46,4 +46,6 @@ public interface POSService {
 	public List<L1menu> findByMM(int mmId);
 	
 	public List<L2menu> findByL1(int l1Id);
+	
+	public List<Floor> findByEst(int eId);
 }

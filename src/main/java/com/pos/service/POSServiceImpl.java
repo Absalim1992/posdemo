@@ -135,6 +135,11 @@ public class POSServiceImpl implements POSService{
 	public List<L2menu> findByL1(int l1Id) {
 		return l3menudao.findByL1(l1Id);
 	}
+	
+	@Override
+	public List<Floor> findByEst(int eId) {
+		return tablesdao.findByEst(eId);
+	}
 
 	@Override
 	public void addL3menu(L3menu l3menu) {

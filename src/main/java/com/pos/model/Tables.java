@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -21,12 +22,36 @@ public class Tables {
 	@Column(name = "table_id")
 	private int id;
 	
-	@Size(min=3, max=50)
+
 	@Column(name = "table_name", nullable = false)
 	private String name;
 	
 	@Column(name = "capacity", nullable = false)
 	private int capacity;
+	
+	@ManyToOne(targetEntity=Floor.class)
+	@JoinColumn(name="floor_id")
+	Floor floor;
+
+	@Transient
+	Integer fid;
+	
+	
+	public Integer getFid() {
+		return fid;
+	}
+
+	public void setFid(Integer fid) {
+		this.fid = fid;
+	}
+
+	public Floor getFloor() {
+		return floor;
+	}
+
+	public void setFloor(Floor floor) {
+		this.floor = floor;
+	}
 
 	public Tables() {
 

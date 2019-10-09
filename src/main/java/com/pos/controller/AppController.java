@@ -50,6 +50,11 @@ public class AppController {
 	@RequestMapping(value = { "/establishment"}, method = RequestMethod.POST)
 	public String saveestablishment(@Valid Establishment establishment1, BindingResult result, ModelMap model) {
 		System.out.println();
+		
+		MenuMaster mas=new MenuMaster();
+		mas.setId(establishment1.getUid());
+		establishment1.setMaster(mas);
+		
 		posservice.addEstablishment(establishment1);
 		
 		List<MenuMaster> menumasterList2 = posservice.findMenuMasters();
@@ -79,8 +84,12 @@ public class AppController {
 	@RequestMapping(value = { "/floor"}, method = RequestMethod.POST)
 	public String savefloor(@Valid Floor floor1, BindingResult result, ModelMap model) {
 		System.out.println(floor1);
-		posservice.addFloor(floor1);
 		
+		Establishment es = new Establishment();
+		es.setId(floor1.getEid());
+		floor1.setEst(es);
+		
+		posservice.addFloor(floor1);
 		List<Establishment> establishmentList2 = posservice.findEstablishments();
 		model.addAttribute("establishmentList", establishmentList2);
 		
@@ -247,18 +256,29 @@ public class AppController {
 		Tables tables = new Tables();
 		model.addAttribute("tables", tables);
 
+		List<Establishment> establishmentList = posservice.findEstablishments();		
+		model.addAttribute("establishmentList", establishmentList);
 		
-		List<Floor> floorList = posservice.findFloors();
-		model.addAttribute("floorList", floorList);
+		/*List<Floor> floorList = posservice.findFloors();
+		model.addAttribute("floorList", floorList);*/
 		return "tables";
 	}
 	
 	@RequestMapping(value = { "/tables"}, method = RequestMethod.POST)
 	public String tablesSave(@Valid Tables tables1, BindingResult result, ModelMap model) {
 		System.out.println(tables1);
+		
+		Floor f1 = new Floor();
+		f1.setId(tables1.getFid());
+		tables1.setFloor(f1);
+		
 		posservice.addTables(tables1);
 		Tables tables = new Tables();
 		model.addAttribute("tables", tables);
+		
+		List<Establishment> establishmentList = posservice.findEstablishments();		
+		model.addAttribute("establishmentList", establishmentList);
+		
 		List<Floor> floorList = posservice.findFloors();
 		model.addAttribute("floorList", floorList);
 		return "tables";
@@ -301,6 +321,16 @@ public class AppController {
 	
 		Gson gson = new Gson();
 		return gson.toJson(posservice.findByL1(id));
+		
+	}
+	
+	@RequestMapping(value= "loadFloor/{id}", method= RequestMethod.GET)
+	@ResponseBody
+	public String loadEst(@PathVariable("id") int id,ModelMap modelMap){
+		System.out.println("Inside loadFloor "+id);
+	
+		Gson gson = new Gson();
+		return gson.toJson(posservice.findByEst(id));
 		
 	}
 	

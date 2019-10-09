@@ -30,6 +30,9 @@ public class MenuMaster {
 	
 	@OneToMany(targetEntity=L1menu.class,cascade = CascadeType.ALL,mappedBy="master")
     private List<L1menu> listL1Menu = new ArrayList<>();
+	
+	@OneToMany(targetEntity=Establishment.class,cascade = CascadeType.ALL,mappedBy="master")
+	private List<Establishment> listEst = new ArrayList<>();
 
 	/*@OneToMany(cascade = CascadeType.ALL)
 	private List<Establishment> listEstablishment = new ArrayList<>(0);

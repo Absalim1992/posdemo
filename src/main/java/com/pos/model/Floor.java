@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -30,9 +31,30 @@ public class Floor {
 	@Column(name = "floor_name", nullable = false)
 	private String name;
 	
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Tables> listTables = new ArrayList<>(0);
+	@ManyToOne(targetEntity=Establishment.class)
+	@JoinColumn(name="est_id")
+	Establishment est;
+	
+	
+	@OneToMany(targetEntity=Tables.class,cascade = CascadeType.ALL,mappedBy="floor")
+    private List<Tables> listTables = new ArrayList<>();
+	
+	@Transient
+	Integer eid;
 
+	
+	public Establishment getEst() {
+		return est;
+	}
+	public void setEst(Establishment est) {
+		this.est = est;
+	}
+	public Integer getEid() {
+		return eid;
+	}
+	public void setEid(Integer eid) {
+		this.eid = eid;
+	}
 	public Floor() {
 		
 	}
@@ -60,11 +82,11 @@ public class Floor {
 		this.name = name;
 	}
 
-	public Floor(int id, String name, List<Tables> listTables) {
+	public Floor(int id, String name) {
 		
 		this.id = id;
 		this.name = name;
-		this.listTables = listTables;
+
 	}
 	
 	@Override

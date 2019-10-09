@@ -1,5 +1,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#comboboxEstablishment').on('change', function(){
+		var mmId = $('#comboboxEstablishment option:selected').val();
+		$("#eid").val(mmId);
+	});
+});
+</script>
+
 <body>
 	<div align="center">
 		<h1>FLOOR TABLE</h1>
@@ -8,15 +19,16 @@
 
 
 			<table cellpadding="3">
+			
 				<tr>
 					<!-- load the ESTABLISHMENT from the database  -->
 					<td><label>Establishment Name: </label></td>
-					<td><select id="comboboxMenumaster">
-						<option value="-1">Select MenuMaster</option>
+					<td><form:select id="comboboxEstablishment" path="eid">
+						<option value="-1">Select Establishment</option>
 						<c:forEach var="est" items="${establishmentList }">
 							<option value="${est.id }">${est.name }</option>
 						</c:forEach>
-				</select></td>
+				</form:select></td>
 				</tr>
 				<tr>
 					<td><label>Floor Name: </label></td>

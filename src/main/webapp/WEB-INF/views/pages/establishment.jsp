@@ -9,25 +9,8 @@ $(document).ready(function(){
 		
 		var mmId = $('#comboboxMenumaster option:selected').val();
 		alert(mmId);
-		
-		$.ajax({
-			type: 'GET',
-			url: 'loadL1menu/' + mmId,
-			success: function(result){
-				var result = JSON.parse(result);
-				var s = '';
-				for(var i = 0; i < result.length; i++){
-					s += '<option value="'+ result[i].id +'">' + result[i].name + '</option>';
-				}
-				var resultTag = '';
-				for(var i =0; i < result.length; i++){
-					resultTag += "<tr><td>"+result[i].name+"</td></tr>";
-				
-				}
-				$("#mmtable tbody").append(resultTag);
-			  
-			}
-		});
+		$("#uid").val(mmId);
+	
 	});
 });
 
@@ -43,12 +26,12 @@ $(document).ready(function(){
 			<!-- load the MENU MASTER from the database  -->
 			<tr>
 				<td><label>Select Menu Master: </label></td>
-				<td><select id="comboboxMenumaster">
+				<td><form:select id="comboboxMenumaster" path="uid">
 						<option value="-1">Select MenuMaster</option>
 						<c:forEach var="mm" items="${menumasterList }">
 							<option value="${mm.id }">${mm.name }</option>
 						</c:forEach>
-				</select></td>
+				</form:select></td>
 			</tr>
 			<tr>
 				<td><label>Establishment Name: </label></td>

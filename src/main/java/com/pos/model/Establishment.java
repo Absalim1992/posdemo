@@ -10,9 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -29,9 +31,34 @@ public class Establishment implements Serializable{
 	@Size(min=3, max=50)
 	@Column(name = "est_name", nullable = false)
 	private String name;
+	
+	@ManyToOne(targetEntity=MenuMaster.class)
+	@JoinColumn(name="menumaster_id")
+	MenuMaster master;
 		
-	@OneToMany(cascade = CascadeType.ALL)
-    private List<Floor> listFloor = new ArrayList<>(0);
+	@OneToMany(targetEntity=Floor.class,cascade = CascadeType.ALL,mappedBy="est")
+    private List<Floor> listFloor = new ArrayList<>();
+	
+	@Transient
+	Integer uid;
+	
+	
+
+	public MenuMaster getMaster() {
+		return master;
+	}
+
+	public void setMaster(MenuMaster master) {
+		this.master = master;
+	}
+
+	public Integer getUid() {
+		return uid;
+	}
+
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
 
 	public List<Floor> getListFloor() {
 		return listFloor;
