@@ -17,7 +17,10 @@ function submitCheck(){
 
 <div align="center">
     <h1>MENU MASTER</h1><hr/>
+
+
     <form:form method="POST" modelAttribute="menumaster" onsubmit="return submitCheck()">
+
 	<table cellpadding="5">
 		<tr><td><label>MenuMaster Name:</label></td>
 		<td><form:input path="name" id="name"/></td></tr>
