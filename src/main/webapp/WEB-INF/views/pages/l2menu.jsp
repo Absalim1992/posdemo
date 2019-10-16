@@ -5,12 +5,8 @@
 <script>
 $(document).ready(function(){
 	$('#comboboxMenumaster').on('change', function(){
-		
-		
-		var mmId = $('#comboboxMenumaster option:selected').val();
-		alert(mmId);
-
-		
+	var mmId = $('#comboboxMenumaster option:selected').val();
+		//alert(mmId);
 		$.ajax({
 			type: 'GET',
 			url: 'loadL1menu/' + mmId,
@@ -23,7 +19,28 @@ $(document).ready(function(){
 				$('#comboboxL1menu').html(s);
 			}
 		});
+		
+		
 	});
+	
+	$('#comboboxL1menu').on('change',function() {
+		var mmId = $('#comboboxL1menu option:selected').val();
+		//alert(mmId);
+		$("#uid").val(mmId);
+
+		$.ajax({
+				type : 'GET',
+				url : 'loadL2menu/'	+ mmId,
+				success : function(result) {
+						var result = JSON.parse(result);
+						var resultTag = '';
+						for(var i =0; i < result.length; i++){
+							resultTag += "<tr><td>"+result[i].name+"</td></tr>";
+						}
+						$("#l2table tbody").append(resultTag);
+				}
+		});
+		});
 });
 
 function submitCheck(){
@@ -79,6 +96,18 @@ function submitCheck(){
 	</table>
 	</div>
 	</form:form>
+	<br/><br/>
+	<table cellpadding="5" id="l2table" width="400" align="center">
+			<h3><caption>Existing L2Menu</caption></h3>
+			<thead>
+				<tr>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
  
  </div>
  

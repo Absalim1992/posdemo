@@ -7,7 +7,7 @@
 	$(document).ready(function() {
 				$('#comboboxMenumaster').on('change',function() {
 				var mmId = $('#comboboxMenumaster option:selected').val();
-				alert(mmId);
+				//alert(mmId);
 				$("#uid").val(mmId);
 
 				$.ajax({
